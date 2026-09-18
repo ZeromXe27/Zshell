@@ -1,0 +1,49 @@
+(include"./profile.yuck")
+
+
+;; ============================================
+;;  PROFILE CARD WIDGET — monasm-dots style
+;;  Photo + greeting + live stats, animated
+;; ============================================
+
+;; --- Live data pollers ---
+(defpoll uptime :interval "30s" "uptime -p | sed 's/up //'")
+(defpoll cpu :interval "2s" "top -bn1 | grep Cpu | awk '{print int($2)}'")
+(defpoll ram :interval "2s" "free | awk '/Mem/{printf \"%.0f\", $3/$2*100}'")
+(defpoll greeting :interval "10m"
+  "hour=$(date +%H); \
+   if [ $hour -lt 12 ]; then echo 'Good Morning ☀️'; \
+   elif [ $hour -lt 17 ]; then echo 'Good Afternoon 🌤️'; \
+   elif [ $hour -lt 21 ]; then echo 'Good Evening 🌆'; \
+   else echo 'Good Night 🌙'; fi")
+(defpoll username :interval "1h" "whoami")
+
+;; --- Main profile card widget ---
+(defwidget profile-card []
+  (box :class "profile-card" :orientation "v" :space-evenly false :valign "start"
+    (box :class "pic-glow" :halign "center"
+      (image :class "profile-pic"
+             :path "${EWW_CONFIG_DIR}/images/profile.jpg"
+             :image-width 120
+             :image-height 120))
+    (label :class "profile-name" :text "${username}")
+    (label :class "profile-greeting" :text greeting)
+    (box :class "stat-row" :orientation "h" :space-evenly true :halign "center"
+      (box :class "stat-pill"
+        (label :class "stat-icon" :text "⏻")
+        (label :class "stat-val" :text uptime))
+      (box :class "stat-pill"
+        (label :class "stat-icon" :text "󰻠")
+        (label :class "stat-val" :text "${cpu}%"))
+      (box :class "stat-pill"
+        (label :class "stat-icon" :text "󰍛")
+        (label :class "stat-val" :text "${ram}%")))))
+
+;; --- Window that hosts it ---
+(defwindow profile
+  :monitor 0
+  :geometry (geometry :x "20px" :y "20px" :width "300px" :height "260px" :anchor "top left")
+  :stacking "fg"
+  :exclusive false
+  :windowtype "dock"
+  (profile-card))

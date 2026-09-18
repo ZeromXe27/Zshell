@@ -1,0 +1,4 @@
+{
+    "$schema":"https://alec016.github.io/Custom-Machinery/Json Schema/src/main/resources/schemas/custom_machinery_machine.json",
+    "key": "student"
+}

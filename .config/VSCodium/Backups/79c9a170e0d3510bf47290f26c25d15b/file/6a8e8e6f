@@ -1,0 +1,13 @@
+file:///home/zerom/Downloads/profile.scss.txt {"mtime":1785505869325,"ctime":1785505869325,"size":1691,"etag":"3gelei9cm1nh","orphaned":false,"typeId":""}
+erom@zerom ~> eww daemon
+ 2026-07-31T14:31:19.920Z INFO  eww > Initializing Eww server. (/run/user/1000/eww-server_1165b879133c4e7a)
+Run `eww logs` to see any errors while editing your configuration.
+ 2026-07-31T14:31:19.920Z INFO  eww::server > Loading paths: config-dir: /home/zerom/.config/eww, ipc-socket: /run/user/1000/eww-server_1165b879133c4e7a, log-file: /home/zerom/.cache/eww/eww_1165b879133c4e7a.log
+error: Input ended unexpectedly. Check if you have any unclosed delimiters
+   ┌─ /home/zerom/.config/eww/eww.yuck:46:18
+   │
+46 │   (profile-card))
+   │                  ─
+
+
+zerom@zerom ~> 

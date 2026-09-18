@@ -1,0 +1,9 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export QT_QPA_PLATFORMTHEME:kde
+SETUVAR fish_color_command:ff79c6
+SETUVAR fish_color_cwd:50fa7b
+SETUVAR fish_color_error:ff5555
+SETUVAR fish_color_host:bd93f9
+SETUVAR fish_color_user:8be9fd
+SETUVAR fish_greeting:
